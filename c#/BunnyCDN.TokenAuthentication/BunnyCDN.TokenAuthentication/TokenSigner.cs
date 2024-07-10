@@ -24,7 +24,7 @@ namespace BunnyCDN.TokenAuthentication
             var expires = config.ExpiresAt.ToUnixTimestamp();
 
             // Sort query parameters before generating base hash
-            var hashableBase = $"{config.SecurityKey}{signaturePath}{config.UserIp}{expires}";
+            var hashableBase = $"{config.SecurityKey}{signaturePath}{expires}{config.UserIp}";
             var sortedParams = url.QueryParams.OrderBy(x => x.Name).ToList(); // sort & remove old items
             url.QueryParams.Clear();
 
